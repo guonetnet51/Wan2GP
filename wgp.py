@@ -69,7 +69,7 @@ def download_ffmpeg():
     zip_name = zip_asset['name']
     with requests.get(zip_url, stream=True) as resp:
         total = int(resp.headers.get('Content-Length', 0))
-        with open(zip_name, 'wb') as f, tqdm(total=total, unit='B', unit_scale=True) as pbar:
+        with open(zip_name, 'wb') as f, tqdm(total=total, unit='B', unit_scale=True, desc="下载 FFMpeg中") as pbar:
             for chunk in resp.iter_content(chunk_size=8192):
                 f.write(chunk)
                 pbar.update(len(chunk))
